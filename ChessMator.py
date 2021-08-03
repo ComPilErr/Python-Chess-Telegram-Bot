@@ -129,7 +129,6 @@ while(True):
                     for _ in range(1,len(msg.split(' '))):
                         accum_moves+=msg.split(' ')[_]+" "
                     user_moves[foo.user_id] = user_moves.get(foo.user_id) + accum_moves
-                    print("USER moves -> ",user_moves)
                     answer = process(user_moves[foo.user_id])
                     user_moves[foo.user_id] = user_moves.get(foo.user_id) + answer + " "
                     foo.send_text("Your move is: " + answer )
