@@ -27,7 +27,6 @@ class uci_bot:
         self.p.stdin.write("setoption name Hash value 32\n")
         self.p.stdin.write("isready\n")
 
-
     def go(self):
         response = requests.get(self.url+'getMe',headers=self.headers)
         return response.json()
@@ -36,14 +35,12 @@ class uci_bot:
         response = requests.get(self.url+'getWebhookInfo',headers=self.headers)
         return response.json()
 
-
     def send_poll(self,question):
         self.params['chat_id']=user_id
         self.params['question']=question
         self.params['options']={'a':'b','c':'d'}
         response = requests.post(self.url+'sendPoll',headers=self.headers,params=self.params)
         return response.json()
-
 
     def send_text(self, msg):
         self.params['chat_id']=user_id
@@ -92,9 +89,7 @@ class uci_bot:
 foo = uci_bot()
 
 def process(moves=""):
-
     foo.p.stdin.write("ucinewgame\n")
-
     if moves is not "":
         foo.p.stdin.write("position startpos moves "+moves+"\n")
     else:
