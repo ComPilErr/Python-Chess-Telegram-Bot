@@ -10,7 +10,6 @@ user_moves = dict()
 
 class uci_bot:
 
-    #user_id = 0
     params = {}
     headers = {'Content-Type':'application/json'}
     token = "XXX"
