@@ -54,7 +54,6 @@ class uci_bot:
         return (response.json()['result'][-1]['update_id'], response.json()['result'][-1]['message']['chat']['id'])
 
     def get_msg_i(self, i):
-        #self.params['chat_id'] = self.user_id
         self.params['offset'] = i
         response = requests.get(self.url+'getUpdates',headers=self.headers,params=self.params)
         for item in response.json()['result']:
