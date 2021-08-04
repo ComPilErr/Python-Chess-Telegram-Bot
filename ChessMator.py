@@ -10,7 +10,7 @@ user_moves = dict()
 
 class uci_bot:
 
-    user_id = 0
+    #user_id = 0
     params = {}
     headers = {'Content-Type':'application/json'}
     token = "XXX"
@@ -31,7 +31,7 @@ class uci_bot:
 
 
     def send_poll(self,question):
-        self.params['chat_id']=user_id
+        self.params['chat_id']=self.user_id
         self.params['question']=question
         self.params['options']={'a':'b','c':'d'}
         response = requests.post(self.url+'sendPoll',headers=self.headers,params=self.params)
@@ -39,7 +39,7 @@ class uci_bot:
 
 
     def send_text(self, msg):
-        self.params['chat_id']=user_id
+        self.params['chat_id']=self.user_id
         self.params['text']=msg
         #print(self.params)
         response = requests.post(self.url+'sendMessage',headers=self.headers,params=self.params)
@@ -55,12 +55,14 @@ class uci_bot:
         return (response.json()['result'][-1]['update_id'], response.json()['result'][-1]['message']['chat']['id'])
 
     def get_msg_i(self, i):
-        self.params['chat_id'] = user_id
+        #self.params['chat_id'] = self.user_id
         self.params['offset'] = i
         response = requests.get(self.url+'getUpdates',headers=self.headers,params=self.params)
         for item in response.json()['result']:
             try:
                 text = item['message']['text']
+                id = item['message']['chat']['id']
+                self.user_id = id
                 print(text)
                 index = item['update_id']
                 if int(i) == int(index):
