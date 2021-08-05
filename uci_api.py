@@ -8,7 +8,6 @@ class UciApi:
     headers = {'Content-Type':'application/json'}
     token = "XXX"
     url = "https://api.telegram.org/bot"+token+'/'
-    #last_id = 0
 
     def __init__(self):
         self.last_id, self.user_id = self.get_last_id()
