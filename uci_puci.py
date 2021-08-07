@@ -1,6 +1,6 @@
 import sys
 import subprocess
-
+from random import randint
 
 class UciPuci:
 
@@ -25,7 +25,7 @@ class UciPuci:
             self.p.stdin.write("position startpos moves "+self.moves+"\n")
         else:
             self.p.stdin.write("position startpos moves\n")
-        self.p.stdin.write("go movetime 2000\n")
+        self.p.stdin.write("go movetime " + str( randint( 1000 , 3000 ) )+"\n")
         out = ""
         for _ in iter(self.p.stdout.readline,''):
             pass
